@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import HelloWorld from "./components/HelloWorld.vue";
+import UiButton from "./components/UiButton/UiButton.vue";
 </script>
 
 <template>
-  <HelloWorld />
+  <UiButton variant="primary" size="lg" type="button">Кнопка</UiButton>
 </template>
