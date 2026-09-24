@@ -7,6 +7,7 @@ const props = withDefaults(defineProps<ButtonProps>(), {
   disabled: false,
   type: "button",
   loading: false,
+  loadingText: "Загрузка",
 });
 
 const emit = defineEmits<{
@@ -27,8 +28,13 @@ function handleClick(e: MouseEvent) {
     :aria-busy="loading || undefined"
     @click="handleClick"
   >
-    <slot name="icon" />
-    <slot />
+    <span v-if="loading" class="ui-button__spinner" aria-hidden="true" />
+    <span v-if="loading" class="ui-visually-hidden">{{ loadingText }}</span>
+
+    <span class="ui-button__content">
+      <slot name="icon" />
+      <slot />
+    </span>
   </button>
 </template>
 
@@ -39,6 +45,7 @@ function handleClick(e: MouseEvent) {
   --_color: var(--ui-color-text);
   --_border: var(--ui-color-border-strong);
 
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -115,5 +122,50 @@ function handleClick(e: MouseEvent) {
   height: var(--ui-control-height-lg);
   padding: 0 var(--ui-space-5);
   font-size: var(--ui-font-size-lg);
+}
+.ui-button__content {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ui-space-2);
+}
+
+.ui-button[aria-busy="true"] .ui-button__content {
+  opacity: 0;
+}
+
+.ui-button__spinner {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 1em;
+  height: 1em;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: var(--ui-radius-full);
+  animation: ui-button-spin 0.7s linear infinite;
+}
+
+@keyframes ui-button-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ui-button__spinner {
+    animation-duration: 1.5s;
+  }
+}
+
+.ui-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
 }
 </style>
