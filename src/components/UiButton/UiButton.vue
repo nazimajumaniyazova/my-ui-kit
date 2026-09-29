@@ -3,7 +3,7 @@ import type { ButtonProps } from "./UiButton.types";
 
 const props = withDefaults(defineProps<ButtonProps>(), {
   variant: "primary",
-  size: "sm",
+  size: "md",
   disabled: false,
   type: "button",
   loading: false,
