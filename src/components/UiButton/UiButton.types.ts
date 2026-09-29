@@ -1,10 +1,10 @@
-export type ButtonType = "primary" | "secondary" | "ghost" | "danger";
+export type ButtonVariant = "primary" | "secondary" | "ghost" | "danger";
 
-export type ButtoSize = "sm" | "md" | "lg";
+export type ButtonSize = "sm" | "md" | "lg";
 
 export interface ButtonProps {
-  variant?: ButtonType;
-  size?: ButtoSize;
+  variant?: ButtonVariant;
+  size?: ButtonSize;
   type?: "button" | "submit" | "reset";
   disabled?: boolean;
   loading?: boolean;
