@@ -32,6 +32,9 @@ export default defineConfig({
             configDir: path.join(dirname, ".storybook"),
           }),
         ],
+        optimizeDeps: {
+          include: ["vue"],
+        },
         test: {
           name: "storybook",
           browser: {
