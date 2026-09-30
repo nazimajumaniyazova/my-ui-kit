@@ -2,6 +2,7 @@
 import { ref } from "vue";
 import UiButton from "./components/UiButton/UiButton.vue";
 import UiIconButton from "./components/UiIconButton/UiIconButton.vue";
+import UiInput from "./components/UiInput/UiInput.vue";
 
 const saving = ref(false);
 
@@ -27,4 +28,15 @@ function save() {
       <path d="M3 3l10 10M13 3L3 13" stroke="currentColor" stroke-width="2" />
     </svg>
   </UiIconButton>
+
+  <UiInput
+    type="text"
+    :required="true"
+    :hint="true"
+    hintText="hint text"
+    :errorMessage="true"
+    errorMessageText="error text"
+  >
+    тестовый текст
+  </UiInput>
 </template>
